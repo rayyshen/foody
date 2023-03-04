@@ -44,3 +44,7 @@ td, th {
     height: auto;
     border: 1px solid #E7DFDD;
 }
+
+.header {
+    text-align: center;
+}

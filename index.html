@@ -1,33 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Foody</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="style.css">
+    <title>Foody</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    <h3 id="temp">Foody</h3>    
-  </div>
-  <div class="w3-display-middle">
-    <input type="text" class="input-field" id="input"><br>
-    <button onClick="tempFunction()" class="scan-button button">Scan Barcode</button>
-  </div>
-  <div class="w3-display-bottomleft w3-padding-large">
-    Made by Ray and Sriram
-  </div>
-</div>
+    <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+        <div class="w3-display-topleft w3-padding-large w3-xlarge">
+            Foody
+        </div>
+        <div class="w3-display-middle">
+            <input type="text" class="input-field" id="input"><br>
+            <button onClick="tempFunction()" class="scan-button button">Scan Barcode</button>
+        </div>
+        <div class="w3-display-bottomleft w3-padding-large">
+            Made by Ray and Sriram
+        </div>
+    </div>
 
-<script>
-    function tempFunction() {
-        document.getElementById("temp").innerHTML = document.getElementById("input").value;
-    }
-</script>
+    <script>
+        function tempFunction() {
+            var baseURL = "https://world.openfoodfacts.org/api/v2/product/" + document.getElementById("input").value;
+            const userAction = async () => {
+                const response = await fetch(baseURL);
+                const myJson = await response.json(); //extract JSON from the http response
+                // do something with myJson
+                return myJson;
+            }
+            // const myJson = await response.json(); //extract JSON from the http response
+            // do something with myJson
+            // console.log(myJson);
+            // return myJson;
+            // };
+            userAction().then(data => {
+                var carbs = data.product.nutriments.carbohydrates_100g;
+                var energy = data.product.nutriments.energy;
+                var fat = data.product.nutriments.fat_100g;
+                var proteins = data.product.nutriments.proteins_100g;
+            })
+        }
+
+
+
+    </script>
 
 </body>
+
 </html>

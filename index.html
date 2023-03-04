@@ -18,7 +18,7 @@
         </div>
         <div class="w3-display-middle">
             <input type="text" class="input-field" id="input"><br>
-            <button onClick="tempFunction()" class="scan-button button">Scan Barcode</button>
+            <button onClick="tempFunction()" class="scan-button button" id="input-button">Scan Barcode</button>
         </div>
         <div class="w3-display-bottomleft w3-padding-large">
             Made by Ray and Sriram
@@ -26,6 +26,7 @@
     </div>
 
     <script>
+ 
         function tempFunction() {
             var baseURL = "https://world.openfoodfacts.org/api/v2/product/" + document.getElementById("input").value;
             const userAction = async () => {
@@ -39,15 +40,22 @@
             // console.log(myJson);
             // return myJson;
             // };
+
             userAction().then(data => {
+                hideElements();
+                showTable();
                 var carbs = data.product.nutriments.carbohydrates_100g;
                 var energy = data.product.nutriments.energy;
                 var fat = data.product.nutriments.fat_100g;
-                var proteins = data.product.nutriments.proteins_100g;
+                var proteins = data.product.nutriments.proteins_100g;   
             })
+        
         }
 
-
+        function hideElements() {
+            document.getElementById("input").style.display = "none";
+            document.getElementById("input-button").style.display = "none";
+        }
 
     </script>
 

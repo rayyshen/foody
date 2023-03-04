@@ -47,6 +47,14 @@
                 <td>Fats</td>
                 <td id="fat"></td>
             </tr>
+            <tr>
+                <td>Sodium</td>
+                <td id="soda"></td>
+            </tr>
+            <tr>
+                <td>Nutriscore</td>
+                <td id="score"></td>
+            </tr>
         </table>
     </div>
 
@@ -71,14 +79,18 @@
                 var servingSize = data.product.serving_quantity;
                 var num = servingSize/100;
                 var carbs = data.product.nutriments.carbohydrates_100g;
-                var energy = data.product.nutriments.energy;
+                var energy = data.product.nutriments.energy_100g;
                 var fat = data.product.nutriments.fat_100g;
                 var proteins = data.product.nutriments.proteins_100g;
+                var score = data.product.nutriscore_grade;
+                var sodium = data.product.nutriments.sodium_100g;
                 document.getElementById("serving").innerHTML = "(" + servingSize + ")";
-                document.getElementById("engy").innerHTML = energy*num;
-                document.getElementById("carb").innerHTML = carbs*num;
-                document.getElementById("protein").innerHTML = proteins*num;
-                document.getElementById("fat").innerHTML = fat*num;
+                document.getElementById("engy").innerHTML = energy*num/4.184 + " Calories";
+                document.getElementById("carb").innerHTML = carbs*num + " G";
+                document.getElementById("protein").innerHTML = proteins*num + " G";
+                document.getElementById("fat").innerHTML = fat*num + " G";
+                document.getElementById("soda").innerHTML = sodium*num*1000 + " MG";
+                document.getElementById("score").innerHTML = score;
                 document.getElementById("table").style.display = "block";
             })
 

@@ -1,0 +1,30 @@
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-color: #0E0B16;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.scan-button {
+    background-color: #4717F6;
+    font-size: large;
+    padding: 10px 24px;
+    border-radius: 4px;
+    border: 0px;
+    color: #E7DFDD;
+    transition-duration: 0.4s;
+}
+
+.button:hover {
+    background-color:#E7DFDD;
+    color: #4717F6;
+}
+
+.input-field {
+    background-color: #E7DFDD;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}

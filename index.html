@@ -10,24 +10,24 @@
 </head>
 <body>
 
-<script>
-    function tempFunction() {
-        console.log(document.getElementById(input).value);
-    }
-</script>
-
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Foody
+    <h3 id="temp">Foody</h3>    
   </div>
   <div class="w3-display-middle">
     <input type="text" class="input-field" id="input"><br>
-    <button onClick="tempFunction"class="scan-button button">Scan Barcode</button>
+    <button onClick="tempFunction()" class="scan-button button">Scan Barcode</button>
   </div>
   <div class="w3-display-bottomleft w3-padding-large">
     Made by Ray and Sriram
   </div>
 </div>
+
+<script>
+    function tempFunction() {
+        document.getElementById("temp").innerHTML = document.getElementById("input").value;
+    }
+</script>
 
 </body>
 </html>

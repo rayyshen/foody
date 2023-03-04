@@ -25,8 +25,33 @@
         </div>
     </div>
 
+    <div class="w3-display-middle table" style="display: none" id="table">
+        <table class="table-content">
+            <tr>
+                <th>Macronutrient</th>
+                <th>Amount Per Serving<span id="serving"></span></th>
+            </tr>
+            <tr>
+                <td>Energy</td>
+                <td id="engy"></td>
+            </tr>
+            <tr>
+                <td>Carbohydrates</td>
+                <td id="carb"></td>
+            </tr>
+            <tr>
+                <td>Protein</td>
+                <td id="protein"></td>
+            </tr>
+            <tr>
+                <td>Fats</td>
+                <td id="fat"></td>
+            </tr>
+        </table>
+    </div>
+
     <script>
- 
+
         function tempFunction() {
             var baseURL = "https://world.openfoodfacts.org/api/v2/product/" + document.getElementById("input").value;
             const userAction = async () => {
@@ -43,19 +68,27 @@
 
             userAction().then(data => {
                 hideElements();
-                showTable();
+                var servingSize = data.product.serving_quantity;
+                var num = servingSize/100;
                 var carbs = data.product.nutriments.carbohydrates_100g;
                 var energy = data.product.nutriments.energy;
                 var fat = data.product.nutriments.fat_100g;
-                var proteins = data.product.nutriments.proteins_100g;   
+                var proteins = data.product.nutriments.proteins_100g;
+                document.getElementById("serving").innerHTML = "(" + servingSize + ")";
+                document.getElementById("engy").innerHTML = energy*num;
+                document.getElementById("carb").innerHTML = carbs*num;
+                document.getElementById("protein").innerHTML = proteins*num;
+                document.getElementById("fat").innerHTML = fat*num;
+                document.getElementById("table").style.display = "block";
             })
-        
+
         }
 
         function hideElements() {
             document.getElementById("input").style.display = "none";
             document.getElementById("input-button").style.display = "none";
         }
+
 
     </script>
 

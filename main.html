@@ -1,0 +1,18 @@
+<html>
+<script src="https://github.com/mebjas/html5-qrcode/releases/download/v2.3.7/html5-qrcode.min.js"></script>
+
+<div id="qr-reader" style="width: 600px"></div>
+
+</html>
+
+<script>
+    function onScanSuccess(decodedText, decodedResult) {
+        console.log(`Code scanned = ${decodedText}`, decodedResult);
+    }
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "qr-reader", {
+            fps: 10, qrbox: 140, useBarCodeDetectorIfSupported: true,        
+    });
+    html5QrcodeScanner.render(onScanSuccess);
+    
+</script>

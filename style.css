@@ -38,3 +38,9 @@ td, th {
     text-align: left;
     padding: 8px;
 }
+
+.img {
+    width: 300px;
+    height: auto;
+    border: 1px solid #E7DFDD;
+}

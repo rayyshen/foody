@@ -24,7 +24,10 @@
             Made by Ray and Sriram
         </div>
     </div>
-
+    
+    <div class="w3-display-left">
+        <img class="img" id="img" src="" style="display: none">
+    </div>
     <div class="w3-display-middle table" style="display: none" id="table">
         <table class="table-content">
             <tr>
@@ -62,6 +65,18 @@
             </tfoot>
         </table>
     </div>
+    <div class="w3-display-topright" style="display: none;" id="translate">
+        <button class="scan-button button">
+            Translate
+        </button>
+    </div>
+
+    <div class="w3-display-bottomright" style="display: none;" id="readout">
+        <button class="scan-button button">
+            Read Out
+        </button>
+    </div>
+
 
     <script>
 
@@ -89,6 +104,8 @@
                 var proteins = data.product.nutriments.proteins_100g;
                 var score = data.product.nutriscore_grade;
                 var sodium = data.product.nutriments.sodium_100g;
+                var imgURL = data.product.image_url;
+                console.log(imgURL);
                 document.getElementById("serving").innerHTML = "(" + servingSize + ")";
                 document.getElementById("engy").innerHTML = Math.round(energy*num/4.184) + " Calories";
                 document.getElementById("carb").innerHTML = Math.round(carbs*num) + " G";
@@ -96,8 +113,13 @@
                 document.getElementById("fat").innerHTML = Math.round(fat*num) + " G";
                 document.getElementById("soda").innerHTML = Math.round(sodium*num*1000) + " MG";
                 document.getElementById("score").innerHTML = score;
+                document.getElementById("img").src = imgURL;
                 document.getElementById("foot").innerHTML = footerResponse(fat, sodium, score);
                 document.getElementById("table").style.display = "block";
+                document.getElementById("img").style.display = "block";
+                document.getElementById("translate").style.display = "block";
+                document.getElementById("readout").style.display = "block";
+                
             })
 
         }

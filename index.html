@@ -55,6 +55,11 @@
                 <td>Nutriscore</td>
                 <td id="score"></td>
             </tr>
+            <tfoot>
+                <tr>
+                    <th colspan="2" id="foot"></th>
+                </tr>
+            </tfoot>
         </table>
     </div>
 
@@ -85,12 +90,13 @@
                 var score = data.product.nutriscore_grade;
                 var sodium = data.product.nutriments.sodium_100g;
                 document.getElementById("serving").innerHTML = "(" + servingSize + ")";
-                document.getElementById("engy").innerHTML = energy*num/4.184 + " Calories";
-                document.getElementById("carb").innerHTML = carbs*num + " G";
-                document.getElementById("protein").innerHTML = proteins*num + " G";
-                document.getElementById("fat").innerHTML = fat*num + " G";
-                document.getElementById("soda").innerHTML = sodium*num*1000 + " MG";
+                document.getElementById("engy").innerHTML = Math.round(energy*num/4.184) + " Calories";
+                document.getElementById("carb").innerHTML = Math.round(carbs*num) + " G";
+                document.getElementById("protein").innerHTML = Math.round(proteins*num) + " G";
+                document.getElementById("fat").innerHTML = Math.round(fat*num) + " G";
+                document.getElementById("soda").innerHTML = Math.round(sodium*num*1000) + " MG";
                 document.getElementById("score").innerHTML = score;
+                document.getElementById("foot").innerHTML = footerResponse(fat, sodium, score);
                 document.getElementById("table").style.display = "block";
             })
 
@@ -101,6 +107,14 @@
             document.getElementById("input-button").style.display = "none";
         }
 
+        function footerResponse(f, s, sc) {
+            if(f > 10 || s > 500 || sc === e || sc === d || sc === c){
+                return "This item is not recommended for children with diabetes or pre-diabetes";
+            }
+            else{
+                return "This item is safe to consume in moderation for children with diabetes or pre-diabetes";
+            }
+        }
 
     </script>
 

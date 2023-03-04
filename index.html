@@ -70,7 +70,7 @@
             </tfoot>
         </table>
     </div>
-    <div class="w3-display-topright" style="display: none;" id="translate">
+    <div class="w3-display-topright" id="translate">
         <!-- <button class="scan-button button">
             Translate
         </button> -->
@@ -79,7 +79,7 @@
     
 
     <div class="w3-display-bottomright" style="display: none;" id="readout">
-        <button class="scan-button button">
+        <button onClick="speak()" class="scan-button button">
             Read Out
         </button>
     </div>
@@ -128,7 +128,6 @@
                 document.getElementById("header").innerHTML = productName;
                 document.getElementById("table").style.display = "block";
                 document.getElementById("img").style.display = "block";
-                document.getElementById("translate").style.display = "block";
                 document.getElementById("readout").style.display = "block";
 
             })
@@ -152,6 +151,16 @@
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
+
+        function speak() {
+            let speech = new SpeechSynthesisUtterance();
+            speech.lang = "en";
+            speech.voice = voice.default;
+            speech.text = "hello world";
+            speech.volume = 100;
+            window.speechSynthesis.speak(speech);
+        }
+        
 
     </script>
 

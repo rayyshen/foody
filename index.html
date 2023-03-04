@@ -25,6 +25,20 @@
         </div>
     </div>
 
+    <div class="w3-display-bottommiddle">
+        <button onClick="redirect()" class="scan-button button" style="display: none" id="donate">
+            Donate to Food Pharmacy
+        </button>
+    </div>
+    <!-- 5449000131805  -->
+
+    <!-- <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>test</p>
+        </div>
+    </div> -->
+
     <div class="w3-display-left">
         <img class="img" id="img" src="" style="display: none">
     </div>
@@ -129,7 +143,7 @@
                 document.getElementById("soda").innerHTML = Math.round(sodium * num * 1000) + " Milligrams";
                 document.getElementById("score").innerHTML = score;
                 document.getElementById("img").src = imgURL;
-                document.getElementById("sugar").innerHTML = sugars + " Grams";
+                document.getElementById("sugar").innerHTML = Math.round(sugars * num) + " Grams";
                 document.getElementById("foot").innerHTML = footerResponse(fat, sodium, score);
                 document.getElementById("header").innerHTML = productName;
                 document.getElementById("table").style.display = "block";
@@ -150,6 +164,7 @@
                 return "This item is not recommended for children with diabetes or pre-diabetes";
             }
             else {
+                document.getElementById("donate").style.display = "block";
                 return "This item is safe to consume in moderation for children with diabetes or pre-diabetes";
             }
         }
@@ -158,12 +173,28 @@
             new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
         }
 
-        function speak() {
-            var msg = new SpeechSynthesisUtterance();
-            msg.text = "你好";
-            msg.lang = 'zh-CN'
-            speechSynthesis.speak(msg);
+        function redirect() {
+            window.location.href = "https://www.capitalareafoodbank.org/how-to-help/donate-food/";
         }
+
+        // var modal = document.getElementById("myModal");
+        // var btn = document.getElementById("donate");
+        // var span = document.getElementByClassName("close")[0];
+
+        // btn.onclick = function () {
+        //     modal.style.display = "block";
+        // }
+
+        // span.onClick = function () {
+        //     modal.style.display = "none";
+        // }
+
+        // window.onclick = function (event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
+
 
 
     </script>

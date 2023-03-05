@@ -10,9 +10,13 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://github.com/mebjas/html5-qrcode/releases/download/v2.3.7/html5-qrcode.min.js"></script>
 </head>
 
 <body>
+
+    <div class="w3-display-topright" id="google_translate_element" style="z-index: 1;"></div>
 
 
     <div class="w3-display-topmiddle">
@@ -21,7 +25,7 @@
 
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
         <div class="w3-display-topleft w3-padding-large w3-xxlarge title">
-            <a href="http://127.0.0.1:5500/index.html" style="text-decoration: none;">Foody</a>
+            <a href="index.html" style="text-decoration: none;">Foody</a>
         </div>
         <div class="w3-display-middle">
             <input type="text" class="input-field" id="input" style="display: none"><br>
@@ -102,19 +106,11 @@
         </table>
     </div>
 
-    <div class="w3-display-topright" id="google_translate_element"></div>
-
     <div class="w3-display-bottomright" style="display: none" id="readout">
         <button onClick="speak()" class="scan-button button" id="speak">
             Read Out
         </button>
     </div>
-
-
-    <script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <script src="https://github.com/mebjas/html5-qrcode/releases/download/v2.3.7/html5-qrcode.min.js"></script>
 
     <script>
 
@@ -212,6 +208,7 @@
                 console.log(`Code scanned = ${decodedText}`, decodedResult);
                 document.getElementById("qr-reader").style.display = "none";
                 tempFunction(decodedText);
+                html5QrcodeScanner.clear();
             }
             var html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader", {

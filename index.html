@@ -196,11 +196,13 @@
             hideElements();
             function onScanSuccess(decodedText, decodedResult) {
                 console.log(`Code scanned = ${decodedText}`, decodedResult);
+                document.getElementById("qr-reader").style.display="none";
                 tempFunction(decodedText);
             }
             var html5QrcodeScanner = new Html5QrcodeScanner(
                 "qr-reader", {
-                fps: 10, qrbox: 140, useBarCodeDetectorIfSupported: true,
+                fps: 10, qrbox: 300, useBarCodeDetectorIfSupported: true,
+                showTorchButtonIfSupported: true,
             });
             html5QrcodeScanner.render(onScanSuccess);
         }

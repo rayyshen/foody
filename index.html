@@ -26,7 +26,7 @@
                 style="display: none;">Submit</button>
         </div>
         <div id="qr-reader" style="width: 600px" class="w3-display-bottommiddle " id="video"></div>
-        <div class="w3-display-bottomleft w3-padding-large">
+        <div class="w3-display-bottomleft w3-padding-large" id="love">
             Made with &#128155; by Ray and Sriram
         </div>
     </div>
@@ -96,12 +96,8 @@
             </tfoot>
         </table>
     </div>
-    <div class="w3-display-topright" id="translate">
-        <!-- <button class="scan-button button">
-            Translate
-        </button> -->
-        <div id="google_translate_element"></div>
-    </div>
+
+    <div class="w3-display-topright"id="google_translate_element"></div>
 
     <div class="w3-display-bottomright" style="display: none" id="readout">
         <button onClick="speak()" class="scan-button button" id="speak">
@@ -154,6 +150,7 @@
                 document.getElementById("score").innerHTML = score;
                 if(( window.innerWidth <= 1200 ) && ( window.innerHeight <= 1000 )){
                     document.getElementById("imgdiv").style.display = "none";
+                    document.getElementById("love").style.display = "none";
                 }
                 else{
                     document.getElementById("imgdiv").style.display = "block";

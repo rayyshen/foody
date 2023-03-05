@@ -14,6 +14,11 @@
 
 <body>
 
+
+    <div class="w3-display-topmiddle">
+        <p id="invis" style="display: none"></p>
+    </div> <!-- invis text box -->
+
     <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
         <div class="w3-display-topleft w3-padding-large w3-xxlarge title">
             <a href="http://127.0.0.1:5500/index.html" style="text-decoration: none;">Foody</a>
@@ -22,8 +27,8 @@
             <input type="text" class="input-field" id="input" style="display: none"><br>
             <button onClick="enterBarcode()" class="scan-button button" id="scan-button">Enter Barcode</button>
             <button onClick="scanBarcode()" class="scan-button button" id="enter-button">Scan Barcode</button>
-            <button onClick="tempFunction(document.getElementById('input').value)" class="scan-button button" id="submit"
-                style="display: none;">Submit</button>
+            <button onClick="tempFunction(document.getElementById('input').value)" class="scan-button button"
+                id="submit" style="display: none;">Submit</button>
         </div>
         <div id="qr-reader" style="width: 600px" class="w3-display-bottommiddle " id="video"></div>
         <div class="w3-display-bottomleft w3-padding-large" id="love">
@@ -97,7 +102,7 @@
         </table>
     </div>
 
-    <div class="w3-display-topright"id="google_translate_element"></div>
+    <div class="w3-display-topright" id="google_translate_element"></div>
 
     <div class="w3-display-bottomright" style="display: none" id="readout">
         <button onClick="speak()" class="scan-button button" id="speak">
@@ -148,11 +153,11 @@
                 document.getElementById("fat").innerHTML = Math.round(fat * num) + " Grams";
                 document.getElementById("soda").innerHTML = Math.round(sodium * num * 1000) + " Milligrams";
                 document.getElementById("score").innerHTML = score;
-                if(( window.innerWidth <= 1200 ) && ( window.innerHeight <= 1000 )){
+                if ((window.innerWidth <= 1200) && (window.innerHeight <= 1000)) {
                     document.getElementById("imgdiv").style.display = "none";
                     document.getElementById("love").style.display = "none";
                 }
-                else{
+                else {
                     document.getElementById("imgdiv").style.display = "block";
                     document.getElementById("img").src = imgURL;
                 }
@@ -162,6 +167,7 @@
                 document.getElementById("table").style.display = "block";
                 document.getElementById("img").style.display = "block";
                 document.getElementById("readout").style.display = "block";
+                document.getElementById('invis').innerText = document.getElementById("header").innerText + " has a serving size of " + document.getElementById("serving").innerText + " grams. The energy value that is provided is " + document.getElementById("engy").innerText + ". The amount of carbohydrates contained is " + document.getElementById("carb").innerText + ". The amount of protein contained is " + document.getElementById("protein").innerText + ". The amount of fat contained is " + document.getElementById("fat").innerText + ". The amount of sodium contained is " + document.getElementById("soda").innerText + ". The nutriscore of this food is " + document.getElementById("score").innerText + ". " + document.getElementById("foot").innerText;
 
             })
 
@@ -172,7 +178,7 @@
             document.getElementById("scan-button").style.display = "none";
             document.getElementById("enter-button").style.display = "none";
             document.getElementById("submit").style.display = "none";
-            
+
         }
 
         function footerResponse(f, s, sc) {
@@ -204,7 +210,7 @@
             hideElements();
             function onScanSuccess(decodedText, decodedResult) {
                 console.log(`Code scanned = ${decodedText}`, decodedResult);
-                document.getElementById("qr-reader").style.display="none";
+                document.getElementById("qr-reader").style.display = "none";
                 tempFunction(decodedText);
             }
             var html5QrcodeScanner = new Html5QrcodeScanner(
@@ -215,15 +221,26 @@
             html5QrcodeScanner.render(onScanSuccess);
         }
 
-        function speak(){
+        function speak() {
             document.getElementById('speak').innerHTML = "Stop Speaking";
 
             let speech = new SpeechSynthesisUtterance();
             let combo = document.getElementsByClassName('goog-te-combo')[0];
 
             speech.lang = combo.value;
-            speech.text = document.getElementById("header").innerHTML + " has a serving size of " + document.getElementById("serving").innerHTML + " grams. The energy value that is provided is " + document.getElementById("engy").innerHTML + ". The amount of carbohydrates contained is " + document.getElementById("carb").innerHTML + ". The amount of protein contained is " + document.getElementById("protein") + ". The amount of fat contained is " + document.getElementById("fat").inner + ". The amount of sodium contained is " + document.getElementById("soda").innerHTML + ". The nutriscore of this food is " + document.getElementById("score").innerHTML + ". " + document.getElementById("foot").innerHTML;
-            if(window.speechSynthesis.speaking){
+            console.log(speech.lang);
+            if (combo.value == "de" || combo.value == "en" || combo.value == "es" || combo.value == "fr" || combo.value == "de" || combo.value == "hi" || combo.value == "id" || combo.value == "it" || combo.value == "ja" || combo.value == "ko" || combo.value == "nl" || combo.value == "pl" || combo.value == "pt" || combo.value == "ru" || combo.value == "zh-CN" || combo.value == "zh-TW") {
+                
+            }
+            else {
+                console.log("unable to speak that language");
+                alert("Unable to speak that language"); 
+                return;
+            }
+
+            console.log(document.getElementById('invis').textContent);
+            speech.text = document.getElementById('invis').textContent;
+            if (window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
                 document.getElementById('speak').innerHTML = "Start Speaking";
             }

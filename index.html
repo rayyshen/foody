@@ -17,9 +17,13 @@
             Foody
         </div>
         <div class="w3-display-middle">
-            <input type="text" class="input-field" id="input"><br>
-            <button onClick="tempFunction()" class="scan-button button" id="input-button">Scan Barcode</button>
+            <input type="text" class="input-field" id="input" style="display: none"><br>
+            <button onClick="enterBarcode()" class="scan-button button" id="scan-button">Enter Barcode</button>
+            <button onClick="scanBarcode()" class="scan-button button" id="enter-button">Scan Barcode</button>
+            <button onClick="tempFunction(document.getElementById('input').value)" class="scan-button button" id="submit"
+                style="display: none;">Submit</button>
         </div>
+        <div id="qr-reader" style="width: 600px" class="w3-display-bottommiddle " id="video"></div>
         <div class="w3-display-bottomleft w3-padding-large">
             Made by Ray and Sriram
         </div>
@@ -105,10 +109,12 @@
     <script type="text/javascript"
         src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
+    <script src="https://github.com/mebjas/html5-qrcode/releases/download/v2.3.7/html5-qrcode.min.js"></script>
+
     <script>
 
-        function tempFunction() {
-            var baseURL = "https://world.openfoodfacts.org/api/v2/product/" + document.getElementById("input").value;
+        function tempFunction(data) {
+            var baseURL = "https://world.openfoodfacts.org/api/v2/product/" + data;
             const userAction = async () => {
                 const response = await fetch(baseURL);
                 const myJson = await response.json(); //extract JSON from the http response
@@ -143,7 +149,7 @@
                 document.getElementById("soda").innerHTML = Math.round(sodium * num * 1000) + " Milligrams";
                 document.getElementById("score").innerHTML = score;
                 document.getElementById("img").src = imgURL;
-                document.getElementById("sugar").innerHTML = Math.round(sugars * num) + " Grams";
+                document.getElementById("sugar").innerHTML = Math.round(sugars) + " Grams";
                 document.getElementById("foot").innerHTML = footerResponse(fat, sodium, score);
                 document.getElementById("header").innerHTML = productName;
                 document.getElementById("table").style.display = "block";
@@ -156,7 +162,9 @@
 
         function hideElements() {
             document.getElementById("input").style.display = "none";
-            document.getElementById("input-button").style.display = "none";
+            document.getElementById("scan-button").style.display = "none";
+            document.getElementById("enter-button").style.display = "none";
+            document.getElementById("submit").style.display = "none";
         }
 
         function footerResponse(f, s, sc) {
@@ -176,6 +184,27 @@
         function redirect() {
             window.location.href = "https://www.capitalareafoodbank.org/how-to-help/donate-food/";
         }
+
+        function enterBarcode() {
+            document.getElementById("enter-button").style.display = "none";
+            document.getElementById("scan-button").style.display = "none";
+            document.getElementById("submit").style.display = "block";
+            document.getElementById("input").style.display = "block";
+        }
+
+        function scanBarcode() {
+            hideElements();
+            function onScanSuccess(decodedText, decodedResult) {
+                console.log(`Code scanned = ${decodedText}`, decodedResult);
+                tempFunction(decodedText);
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader", {
+                fps: 10, qrbox: 140, useBarCodeDetectorIfSupported: true,
+            });
+            html5QrcodeScanner.render(onScanSuccess);
+        }
+
 
         // var modal = document.getElementById("myModal");
         // var btn = document.getElementById("donate");

@@ -5,6 +5,7 @@ body, html {height: 100%}
   min-height: 100%;
   background-position: center;
   background-size: cover;
+  overflow: auto;
 }
 
 .scan-button {
@@ -31,6 +32,8 @@ body, html {height: 100%}
 
 .table {
     color: #E7DFDD;
+    min-width: none;
+    min-height: none;
 }
 
 td, th {
@@ -44,6 +47,8 @@ td, th {
     width: 300px;
     height: auto;
     border: 3px solid #4717F6;
+    min-width: none;
+    min-height: none;
 }
 
 .header {

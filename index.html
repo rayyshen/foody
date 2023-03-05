@@ -228,15 +228,7 @@
             let combo = document.getElementsByClassName('goog-te-combo')[0];
 
             speech.lang = combo.value;
-            console.log(speech.lang);
-            if (combo.value == "de" || combo.value == "en" || combo.value == "es" || combo.value == "fr" || combo.value == "de" || combo.value == "hi" || combo.value == "id" || combo.value == "it" || combo.value == "ja" || combo.value == "ko" || combo.value == "nl" || combo.value == "pl" || combo.value == "pt" || combo.value == "ru" || combo.value == "zh-CN" || combo.value == "zh-TW") {
-                
-            }
-            else {
-                console.log("unable to speak that language");
-                alert("Unable to speak that language"); 
-                return;
-            }
+            console.log(combo.value);
 
             console.log(document.getElementById('invis').textContent);
             speech.text = document.getElementById('invis').textContent;

@@ -47,8 +47,8 @@
         </div>
     </div> -->
 
-    <div class="w3-display-left">
-        <img class="img" id="img" src="" style="display: none">
+    <div class="w3-display-left" id="imgdiv" style="display: none">
+        <img class="img" id="img" src="">
     </div>
     <div class="w3-display-middle table" style="display: none" id="table">
         <table class="table-content">
@@ -152,7 +152,13 @@
                 document.getElementById("fat").innerHTML = Math.round(fat * num) + " Grams";
                 document.getElementById("soda").innerHTML = Math.round(sodium * num * 1000) + " Milligrams";
                 document.getElementById("score").innerHTML = score;
-                document.getElementById("img").src = imgURL;
+                if(( window.innerWidth <= 1200 ) && ( window.innerHeight <= 1000 )){
+                    document.getElementById("imgdiv").style.display = "none";
+                }
+                else{
+                    document.getElementById("imgdiv").style.display = "block";
+                    document.getElementById("img").src = imgURL;
+                }
                 document.getElementById("sugar").innerHTML = Math.round(sugars) + " Grams";
                 document.getElementById("foot").innerHTML = footerResponse(fat, sodium, score);
                 document.getElementById("header").innerHTML = productName;
@@ -169,6 +175,7 @@
             document.getElementById("scan-button").style.display = "none";
             document.getElementById("enter-button").style.display = "none";
             document.getElementById("submit").style.display = "none";
+            
         }
 
         function footerResponse(f, s, sc) {
@@ -219,7 +226,6 @@
 
             speech.lang = combo.value;
             speech.text = document.getElementById("header").innerHTML + " has a serving size of " + document.getElementById("serving").innerHTML + " grams. The energy value that is provided is " + document.getElementById("engy").innerHTML + ". The amount of carbohydrates contained is " + document.getElementById("carb").innerHTML + ". The amount of protein contained is " + document.getElementById("protein") + ". The amount of fat contained is " + document.getElementById("fat").inner + ". The amount of sodium contained is " + document.getElementById("soda").innerHTML + ". The nutriscore of this food is " + document.getElementById("score").innerHTML + ". " + document.getElementById("foot").innerHTML;
-
             if(window.speechSynthesis.speaking){
                 window.speechSynthesis.cancel();
                 document.getElementById('speak').innerHTML = "Start Speaking";

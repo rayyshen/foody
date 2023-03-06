@@ -24,5 +24,5 @@ Barcode scanning app for quick nutritional information, with translation and tex
 
 ## Authors
 
-- [@youfriendlyasian](https://www.github.com/youfriendlyasian)
+- [@rayyshen](https://www.github.com/rayyshen)
 - Sriram

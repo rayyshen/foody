@@ -1,6 +1,7 @@
 
 # Foody (HackTJ 10.0)
 
+[Devpost](https://devpost.com/software/foody-oxk6u4)
 Barcode scanning app for quick nutritional information, with translation and text-to-speech features for wider accessibility. Supports the food pharmacy program. 
 
 
@@ -25,4 +26,4 @@ Barcode scanning app for quick nutritional information, with translation and tex
 ## Authors
 
 - [@rayyshen](https://www.github.com/rayyshen)
-- Sriram
+- [@qwertyboy814](https://www.github.com/qwertyboy814)

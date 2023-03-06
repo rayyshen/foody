@@ -6,9 +6,9 @@ Barcode scanning app for quick nutritional information, with translation and tex
 
 ## Screenshots
 
-![App Screenshot](landing.png)
+![App Screenshot](https://github.com/youfriendlyasian/foody/blob/main/img/landing.png)
 
-![App Screenshot](facts.png)
+![App Screenshot](https://github.com/youfriendlyasian/foody/blob/main/img/facts.png)
 
 
 

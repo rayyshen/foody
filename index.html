@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://github.com/mebjas/html5-qrcode/releases/download/v2.3.7/html5-qrcode.min.js"></script>
 </head>
 
@@ -55,6 +56,11 @@
             <p>test</p>
         </div>
     </div> -->
+
+    <div class="w3-display-middle" id="notFound" style="display: none">
+        <h1 style="color:#E7DFDD;">product not found</h1>
+        <button onClick="retry()" id="notFoundButton" class="scan-button button" style="display: none">Retry</button>
+    </div>
 
     <div class="w3-display-left" id="imgdiv" style="display: none">
         <img class="img" id="img" src="">

@@ -4,6 +4,7 @@ function tempFunction(data) {
         const response = await fetch(baseURL);
         const myJson = await response.json(); //extract JSON from the http response
         // do something with myJson
+        console.log(myJson);
         return myJson;
     }
     // const myJson = await response.json(); //extract JSON from the http response
@@ -14,6 +15,10 @@ function tempFunction(data) {
 
     userAction().then(data => {
         hideElements();
+        if (data.status_verbose === "product not found") {
+            productNotFound();
+            return;
+        }
         var servingSize = data.product.serving_quantity;
         var num = servingSize / 100;
         var carbs = data.product.nutriments.carbohydrates_100g;
@@ -120,6 +125,16 @@ function speak() {
     else {
         window.speechSynthesis.speak(speech);
     }
+}
+
+function productNotFound() {
+    console.log("product not found");
+    document.getElementById('notFound').style.display = "block";
+    document.getElementById('notFoundButton').style.display = "block";
+}
+
+function retry() {
+    location.href = "index.html";
 }
 
 
